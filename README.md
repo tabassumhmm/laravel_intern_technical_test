@@ -4,26 +4,24 @@ Laravel 13 REST API for managing posts and their authors.
 
 ## Requirements
 
-- PHP 8.4
+- PHP 8.3 or newer with the PDO SQLite extension
 - Composer 2
 - SQLite 3
-- Nix (for the provided `shell.nix`)
 
 ## Setup
 
 ```sh
-nix-shell
 composer install
-cp .env.example .env
+php -r "file_exists('.env') || copy('.env.example', '.env');"
 php artisan key:generate
-touch database/database.sqlite
+php -r "file_exists('database/database.sqlite') || touch('database/database.sqlite');"
 php artisan migrate
 ```
 
 ## Run
 
 ```sh
-nix-shell --run 'php artisan serve'
+php artisan serve
 ```
 
 The API is available at `http://127.0.0.1:8000/api`.
